@@ -1,5 +1,5 @@
 .card {
-  margin-top: 50px;
+  margin-top: 30px;
   background-color: rgb(32, 34, 36);
   color: white;
   width: 240px;
@@ -13,15 +13,15 @@
 }
 
 .title {
-  padding: 6px 60px 0 21px;
+  padding-left: 20px;
   font-size: 21px;
 }
 
 .rating {
+  padding: 5px 0 0 20px;
   font-size: 13px;
-  padding: 0 70px 0px 0;
 }
 .year {
+  padding-left: 20px;
   font-size: 12px;
-  padding: 0 73px 0px 0;
 }
