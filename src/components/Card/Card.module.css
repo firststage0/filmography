@@ -1,0 +1,27 @@
+.card {
+  margin-top: 50px;
+  background-color: rgb(32, 34, 36);
+  color: white;
+  width: 240px;
+  border-radius: 30px;
+  padding-bottom: 10px;
+}
+.poster {
+  display: flex;
+  padding: 20px 0 0px 20px;
+  width: 200px;
+}
+
+.title {
+  padding: 6px 60px 0 21px;
+  font-size: 21px;
+}
+
+.rating {
+  font-size: 13px;
+  padding: 0 70px 0px 0;
+}
+.year {
+  font-size: 12px;
+  padding: 0 73px 0px 0;
+}
