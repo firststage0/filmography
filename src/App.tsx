@@ -5,7 +5,7 @@ import { fetcher } from "./components/fetcher/fetcher";
 import { useState } from "react";
 import Card from "./components/Card/Card";
 
-const apiKey = "3T1SVP5-F8C4K5B-G5R40PB-JZM3B9Q";
+const apiKey = ;
 const url = "https://api.kinopoisk.dev/v1.4/movie/448";
 const options = {
   method: "GET",
