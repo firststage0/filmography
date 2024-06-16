@@ -5,7 +5,7 @@ import { fetcher } from "./components/fetcher/fetcher";
 import { useState } from "react";
 import Card from "./components/Card/Card";
 
-const apiKey = ;
+const apiKey = process.env.REACT_APP_API_KEY;
 const url = "https://api.kinopoisk.dev/v1.4/movie/448";
 const options = {
   method: "GET",
@@ -27,6 +27,7 @@ function App() {
     getData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   // console.log(data);
   return <div className="App">{!isLoading && <Card data={data} />}</div>;
 }
