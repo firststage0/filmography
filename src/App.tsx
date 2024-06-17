@@ -3,7 +3,7 @@ import "./App.css";
 import React from "react";
 import { fetcher } from "./components/fetcher/fetcher";
 import { useState } from "react";
-import CardGrid from "./components/CardGrid/CardGrid";
+import MovieList from "./components/MovieList/MovieList";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 const url = "https://api.kinopoisk.dev/v1.4/movie?page=1&limit=50";
@@ -29,7 +29,7 @@ function App() {
   }, []);
 
   // console.log(data);
-  return <div className="App">{!isLoading && <CardGrid data={data} />}</div>;
+  return <div className="App">{!isLoading && <MovieList data={data} />}</div>;
 }
 
 export default App;

@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import Card from "../Card/Card";
-const CardGrid = (props: any) => {
+const MovieList = (props: any) => {
   const { data } = props;
   // console.log(data);
 
@@ -14,4 +14,4 @@ const CardGrid = (props: any) => {
   );
 };
 
-export default CardGrid;
+export default MovieList;
