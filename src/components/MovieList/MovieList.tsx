@@ -9,9 +9,7 @@ const MovieList = (props: any) => {
 
   return (
     <>
-      <div className="filters">
-        <YearFilter setCurrentMovieList={setCurrentMovieList} />
-      </div>
+      {<YearFilter setCurrentMovieList={setCurrentMovieList} />}
       <Grid container justifyContent="center" style={{ gridColumnGap: "20px" }}>
         {currentMovieList.docs.map((value: any) => (
           <Card data={value} key={value.id} />
