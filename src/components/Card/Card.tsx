@@ -8,7 +8,7 @@ import styles from "./Card.module.css";
 
 const Card = (props: any) => {
   const { data } = props;
-  console.log("Data", data);
+  // console.log("Data", data);
   const { poster, name, alternativeName, rating, year } = data;
   return (
     <div className={styles.card}>
