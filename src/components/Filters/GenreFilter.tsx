@@ -162,21 +162,22 @@ const GenreFilter = (props) => {
   };
 
   const acceptFilter = () => {
-    selectedGenres.map((el) => {
-      setLocalUrl((prevState) => {
-        return prevState.concat(`&type=${el.slug}`);
-      });
+    const url = selectedGenres.reduce((urlAcc: string, genre) => {
+      return urlAcc.concat(`&type=${genre.slug}`);
+    }, "");
+
+    setLocalUrl((prevState) => {
+      return prevState.concat(url);
     });
   };
 
   useEffect(() => {
-    // const response = fetcher(localUrl, options);
-    // setIsLoading(true);
-    // response.then((res) => {
-    //   setIsLoading(false);
-    //   setCurrentMovieList(res);
-    //   console.log(res);
-    // });
+    const response = fetcher(localUrl, options);
+    setIsLoading(true);
+    response.then((res) => {
+      setIsLoading(false);
+      setCurrentMovieList(res);
+    });
     console.log("useEffected");
   }, [localUrl]);
 

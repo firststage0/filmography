@@ -5,7 +5,9 @@ import YearFilter from "../Filters/YearFilter";
 import GenreFilter from "../Filters/GenreFilter";
 const MovieList = (props: any) => {
   const { data } = props;
-  // console.log(data);
+  console.log(data);
+  const testData = [{ docs: [{}] }];
+
   const [currentMovieList, setCurrentMovieList] = useState(data);
 
   return (
