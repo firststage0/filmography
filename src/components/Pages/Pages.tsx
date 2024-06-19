@@ -25,8 +25,10 @@ const Pages = (props) => {
         variant="soft"
         value={inputPage}
         onChange={(event) => {
-          setInputPage(Number(event.target.value));
-          setPage(Number(event.target.value));
+          if (Number(event.target.value) > 0) {
+            setInputPage(Number(event.target.value));
+            setPage(Number(event.target.value));
+          }
         }}
       />
       <button onClick={incrementValue}>След</button>

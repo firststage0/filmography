@@ -1,14 +1,9 @@
 import React from "react";
 import styles from "./Card.module.css";
-// type CardProps = {
-//   poster: URL;
-
-//   //TODO: Написать типы
-// };
 
 const Card = (props: any) => {
   const { data } = props;
-  // console.log("Data", data);
+
   const { poster, name, alternativeName, rating, year } = data;
   return (
     <div className={styles.card}>

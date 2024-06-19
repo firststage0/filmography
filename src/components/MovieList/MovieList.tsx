@@ -15,8 +15,6 @@ const options = {
 };
 
 const MovieList = () => {
-  // console.log(data);
-  const testData = [{ docs: [{}] }];
   const [urlObject, setUrlObject] = useState({
     year: [],
     rating: [],
@@ -69,6 +67,19 @@ const MovieList = () => {
     getData();
   };
 
+  const renderMovieList = () => {
+    switch (true) {
+      case isLoading: {
+        return <div>Загрузка...</div>;
+      }
+      default: {
+        return MovieList.docs.map((value: any) => (
+          <Card data={value} key={value.id} />
+        ));
+      }
+    }
+  };
+
   return (
     <>
       <div style={{ display: "inline" }}>
@@ -76,7 +87,9 @@ const MovieList = () => {
           <YearFilter setUrlObject={setUrlObject} />
           <RatingFilter setUrlObject={setUrlObject} />
           <GenreFilter setUrlObject={setUrlObject} />
-          <button onClick={acceptFilters}>Accept filters</button>
+          <button style={{ marginTop: "40px" }} onClick={acceptFilters}>
+            Accept filters
+          </button>
         </div>
         <div style={{ paddingLeft: 500 }}>
           <div style={{ width: "50px" }}>
@@ -88,10 +101,7 @@ const MovieList = () => {
             justifyContent="flex-start"
             style={{ gridColumnGap: "20px" }}
           >
-            {!isLoading &&
-              MovieList.docs.map((value: any) => (
-                <Card data={value} key={value.id} />
-              ))}
+            {renderMovieList()}
           </Grid>
         </div>
       </div>

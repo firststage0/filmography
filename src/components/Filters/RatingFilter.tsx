@@ -18,9 +18,10 @@ const RatingFilter = (props) => {
 
   return (
     <div>
-      {!isLoading && (
-        <Slider value={value} setValue={setValue} min={min} max={max} />
-      )}
+      <div style={{ display: "flex" }}>
+        <div style={{ width: "40" }}>Рейтинг:</div>
+        {<Slider value={value} setValue={setValue} min={min} max={max} />}
+      </div>
     </div>
   );
 };
