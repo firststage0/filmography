@@ -9,7 +9,7 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export default function CheckboxesTags(props: any) {
-  const { genres, setSelectedGenres } = props;
+  const { genres, setUrlFilter: setSelectedGenres } = props;
   const handleChange = (_, value) => {
     setSelectedGenres(value);
   };
