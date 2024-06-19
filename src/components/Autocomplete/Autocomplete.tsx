@@ -9,9 +9,9 @@ const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
 const checkedIcon = <CheckBoxIcon fontSize="small" />;
 
 export default function CheckboxesTags(props: any) {
-  const { genres, setUrlFilter } = props;
+  const { genres, setUrlFilter: setSelectedGenres } = props;
   const handleChange = (_, value) => {
-    setUrlFilter(value);
+    setSelectedGenres(value);
   };
   return (
     <Autocomplete

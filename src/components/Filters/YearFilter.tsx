@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Slider from "../Slider/Slider";
-import { fetcher } from "../fetcher/fetcher";
 
 const year = new Date().getFullYear();
 const YearFilter = (props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { setUrl, url } = props;
+  const { setUrlObject } = props;
 
   const [value, setValue] = useState<number[]>([1990, year]);
 
   useEffect(() => {
-    const localUrl =
-      value[0] === value[1]
-        ? `&year=${value[0]}`
-        : `&year=${value[0]}-${value[1]}`;
-    setUrl(`${url}${localUrl}`);
-    console.log(localUrl);
+    setUrlObject((prevState) => ({
+      ...prevState,
+      year: value,
+    }));
   }, [value]);
 
   return (

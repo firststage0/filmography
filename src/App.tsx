@@ -54,16 +54,16 @@ const defaultData = {
 };
 
 function App() {
-  const [data, setData] = useState(defaultData);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const getData = () => {
-    const response = fetcher(url, options);
-    setIsLoading(true);
-    response.then((res) => {
-      setIsLoading(false);
-      setData(res);
-    });
-  };
+  // const [data, setData] = useState(defaultData);
+  // const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const getData = () => {
+  //   const response = fetcher(url, options);
+  //   setIsLoading(true);
+  //   response.then((res) => {
+  //     setIsLoading(false);
+  //     setData(res);
+  //   });
+  // };
 
   // useEffect(() => {
 
@@ -75,8 +75,8 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={getData}>get data from fetch</button>
-      {!isLoading && <MovieList data={data} />}
+      {/* <button onClick={getData}>get data from fetch</button> */}
+      {<MovieList />}
     </div>
   );
 }

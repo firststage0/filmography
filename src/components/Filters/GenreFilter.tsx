@@ -145,32 +145,25 @@ const genreList = [
 const GenreFilter = (props: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [genres, setGenres] = useState(genreList);
-  const { setGenreUrl } = props;
+  const { setUrlObject } = props;
 
   useEffect(() => {
-    const getGenres = () => {
-      // const response = fetcher(genresUrl, options);
-      // setIsLoading(true);
-      // response.then((res) => {
-      //   setIsLoading(false);
-      //   setGenres(res);
-      // });
-      console.log("Get genres useEffect");
-    };
+    // const response = fetcher(genresUrl, options);
+    // setIsLoading(true);
+    // response.then((res) => {
+    //   setIsLoading(false);
+    //   setGenres(res);
+    // });
   }, [genres]);
 
-  const setUrlFilter = (value) => {
-    const url = value.reduce((urlAcc: string, genre) => {
-      return urlAcc.concat(`&type=${genre.slug}`);
-    }, "");
-
-    setGenreUrl(url);
+  const setSelectedGenres = (value) => {
+    setUrlObject((prevState) => ({ ...prevState, genre: value }));
   };
 
   return (
     <>
       {!isLoading && (
-        <Autocomplete genres={genres} setUrlFilter={setUrlFilter} />
+        <Autocomplete genres={genres} setUrlFilter={setSelectedGenres} />
       )}
     </>
   );
