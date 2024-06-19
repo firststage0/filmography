@@ -5,23 +5,18 @@ import { fetcher } from "../fetcher/fetcher";
 const year = new Date().getFullYear();
 const YearFilter = (props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { setUrl } = props;
+  const { setUrl, url } = props;
 
   const [value, setValue] = useState<number[]>([1990, year]);
 
-  const setFilter = () => {
+  useEffect(() => {
     const localUrl =
       value[0] === value[1]
         ? `&year=${value[0]}`
         : `&year=${value[0]}-${value[1]}`;
-
-    // const response = fetcher(localUrl, options);
-    // setIsLoading(true);
-    // response.then((res) => {
-    //   setIsLoading(false);
-    //   setCurrentMovieList(res);
-    // });
-  };
+    setUrl(`${url}${localUrl}`);
+    console.log(localUrl);
+  }, [value]);
 
   return (
     <div>

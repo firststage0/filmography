@@ -12,12 +12,22 @@ const options = {
   headers: { accept: "application/json", "X-API-KEY": apiKey },
 };
 
+const defaultUrlObject = {
+  year: "",
+  rating: null,
+  genre: [],
+};
+
 const MovieList = (props: any) => {
   const { data } = props;
   // console.log(data);
   const testData = [{ docs: [{}] }];
   const [url, setUrl] = useState<string>(defaultUrl);
+  const [urlObject, setUrlObject] = useState(defaultUrlObject);
   const [genreUrl, setGenreUrl] = useState("");
+
+  setUrlObject((prevState) => ({ ...prevState, genre: [] }));
+
   const [currentMovieList, setCurrentMovieList] = useState(data);
 
   const acceptFilters = () => {
@@ -28,7 +38,7 @@ const MovieList = (props: any) => {
     <>
       <div style={{ display: "inline" }}>
         <div style={{ display: "block", paddingTop: "100px" }}>
-          <YearFilter setUrl={setUrl} />
+          <YearFilter setUrl={setUrl} url={url} />
           <RatingFilter setUrl={setUrl} />
           <GenreFilter setGenreUrl={setGenreUrl} />
         </div>
