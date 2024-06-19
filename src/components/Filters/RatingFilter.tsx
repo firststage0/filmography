@@ -23,12 +23,12 @@ const RatingFilter = (props) => {
         : `${url}&rating.kp=${value[0]}-${value[1]}`;
     console.log(localUrl);
 
-    const response = fetcher(localUrl, options);
-    setIsLoading(true);
-    response.then((res) => {
-      setIsLoading(false);
-      setCurrentMovieList(res);
-    });
+    // const response = fetcher(localUrl, options);
+    // setIsLoading(true);
+    // response.then((res) => {
+    //   setIsLoading(false);
+    //   setCurrentMovieList(res);
+    // });
   };
 
   return (

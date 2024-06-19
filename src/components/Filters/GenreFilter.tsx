@@ -142,52 +142,36 @@ const genreList = [
   },
 ];
 
-const GenreFilter = (props) => {
-  const defaultSelectedGenresValue = [];
+const GenreFilter = (props: any) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [genres, setGenres] = useState(genreList);
-  const [selectedGenres, setSelectedGenres] = useState(
-    defaultSelectedGenresValue
-  );
-  const [localUrl, setLocalUrl] = useState(url);
-  const { setCurrentMovieList } = props;
+  const { setGenreUrl } = props;
 
-  const getGenres = () => {
-    const response = fetcher(genresUrl, options);
-    setIsLoading(true);
-    response.then((res) => {
-      setIsLoading(false);
-      setGenres(res);
-    });
-  };
+  useEffect(() => {
+    const getGenres = () => {
+      // const response = fetcher(genresUrl, options);
+      // setIsLoading(true);
+      // response.then((res) => {
+      //   setIsLoading(false);
+      //   setGenres(res);
+      // });
+      console.log("Get genres useEffect");
+    };
+  }, [genres]);
 
-  const acceptFilter = () => {
-    const url = selectedGenres.reduce((urlAcc: string, genre) => {
+  const setUrlFilter = (value) => {
+    const url = value.reduce((urlAcc: string, genre) => {
       return urlAcc.concat(`&type=${genre.slug}`);
     }, "");
 
-    setLocalUrl((prevState) => {
-      return prevState.concat(url);
-    });
+    setGenreUrl(url);
   };
-
-  useEffect(() => {
-    // const response = fetcher(localUrl, options);
-    // setIsLoading(true);
-    // response.then((res) => {
-    //   setIsLoading(false);
-    //   setCurrentMovieList(res);
-    // });
-    console.log("useEffected");
-  }, [localUrl]);
 
   return (
     <>
       {!isLoading && (
-        <Autocomplete genres={genres} setSelectedGenres={setSelectedGenres} />
+        <Autocomplete genres={genres} setUrlFilter={setUrlFilter} />
       )}
-      {/* <button onClick={getGenres}>Get genres</button> */}
-      <button onClick={acceptFilter}>accept filter</button>
     </>
   );
 };
