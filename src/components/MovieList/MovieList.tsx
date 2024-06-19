@@ -3,6 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import Card from "../Card/Card";
 import YearFilter from "../Filters/YearFilter";
 import GenreFilter from "../Filters/GenreFilter";
+import RatingFilter from "../Filters/RatingFilter";
 const MovieList = (props: any) => {
   const { data } = props;
   console.log(data);
@@ -12,7 +13,8 @@ const MovieList = (props: any) => {
 
   return (
     <>
-      {<YearFilter setCurrentMovieList={setCurrentMovieList} />}
+      <YearFilter setCurrentMovieList={setCurrentMovieList} />
+      <RatingFilter setCurrentMovieList={setCurrentMovieList} />
       <div style={{ display: "inline" }}>
         <div style={{ paddingTop: "100px" }}>
           <GenreFilter setCurrentMovieList={setCurrentMovieList} />
