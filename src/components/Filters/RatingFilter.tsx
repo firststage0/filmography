@@ -8,35 +8,37 @@ const options = {
   method: "GET",
   headers: { accept: "application/json", "X-API-KEY": apiKey },
 };
-const year = new Date().getFullYear();
-const YearFilter = (props) => {
+const min = 0;
+const max = 10;
+const RatingFilter = (props) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { setCurrentMovieList } = props;
 
-  const [value, setValue] = useState<number[]>([1990, year]);
+  const [value, setValue] = useState<number[]>([min, max]);
 
   const setFilter = () => {
     const localUrl =
       value[0] === value[1]
-        ? `${url}&year=${value[0]}`
-        : `${url}&year=${value[0]}-${value[1]}`;
+        ? `${url}&rating.kp=${value[0]}`
+        : `${url}&rating.kp=${value[0]}-${value[1]}`;
+    console.log(localUrl);
 
-    // const response = fetcher(localUrl, options);
-    // setIsLoading(true);
-    // response.then((res) => {
-    //   setIsLoading(false);
-    //   setCurrentMovieList(res);
-    // });
+    const response = fetcher(localUrl, options);
+    setIsLoading(true);
+    response.then((res) => {
+      setIsLoading(false);
+      setCurrentMovieList(res);
+    });
   };
 
   return (
     <div>
       {!isLoading && (
-        <Slider value={value} setValue={setValue} min={1990} max={year} />
+        <Slider value={value} setValue={setValue} min={min} max={max} />
       )}
       <button onClick={setFilter}>Filter</button>
     </div>
   );
 };
 
-export default YearFilter;
+export default RatingFilter;

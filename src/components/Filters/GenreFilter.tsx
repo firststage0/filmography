@@ -172,12 +172,12 @@ const GenreFilter = (props) => {
   };
 
   useEffect(() => {
-    const response = fetcher(localUrl, options);
-    setIsLoading(true);
-    response.then((res) => {
-      setIsLoading(false);
-      setCurrentMovieList(res);
-    });
+    // const response = fetcher(localUrl, options);
+    // setIsLoading(true);
+    // response.then((res) => {
+    //   setIsLoading(false);
+    //   setCurrentMovieList(res);
+    // });
     console.log("useEffected");
   }, [localUrl]);
 

@@ -5,9 +5,10 @@ import Slider from "@mui/material/Slider";
 export default function RangeSlider(props: {
   value: number[];
   setValue: any;
-  year: number;
+  min: number;
+  max: number;
 }) {
-  const { value, setValue, year } = props;
+  const { value, setValue, min, max } = props;
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
@@ -20,8 +21,8 @@ export default function RangeSlider(props: {
         value={value}
         onChange={handleChange}
         valueLabelDisplay="auto"
-        min={1990}
-        max={year}
+        min={min}
+        max={max}
       />
     </Box>
   );
