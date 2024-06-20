@@ -28,10 +28,10 @@ const MovieList = () => {
 
   const defaultUrl = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=50`;
 
-  // useEffect(() => {
-  //   getData();
-  //   console.log(page);
-  // }, [page]);
+  useEffect(() => {
+    getData();
+    console.log(page);
+  }, [page]);
 
   const followPattern = (stringPattern, dataPattern) => {
     return `${stringPattern}${dataPattern[0]}-${dataPattern[1]}`;
@@ -75,7 +75,11 @@ const MovieList = () => {
       }
       default: {
         return MovieList.docs.map((value: any) => (
-          <Link to="filmdetails" state={{ data: value }}>
+          <Link
+            style={{ textDecoration: "none" }}
+            to="filmdetails"
+            state={{ data: value }}
+          >
             <Card data={value} key={value.id} />
           </Link>
         ));

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
+import styles from "./FilmDetails.module.css";
 
 const FilmDetails = () => {
   const location = useLocation();
