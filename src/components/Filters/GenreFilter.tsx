@@ -17,12 +17,12 @@ const GenreFilter = (props: any) => {
 
   useEffect(() => {
     const response = fetcher(genresUrl, options);
-    setIsLoading(true);
-    response.then((res) => {
-      setIsLoading(false);
-      console.log(res);
-      setGenres(res);
-    });
+    // setIsLoading(true);
+    // response.then((res) => {
+    //   setIsLoading(false);
+    //   console.log(res);
+    //   setGenres(res);
+    // });
   }, []);
 
   const setSelectedGenres = (value) => {

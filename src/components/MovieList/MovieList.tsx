@@ -15,6 +15,21 @@ const options = {
   headers: { accept: "application/json", "X-API-KEY": apiKey },
 };
 
+const testData = {
+  id: 5699007,
+  name: "Дарую ей власть над собой",
+  alternativeName: "Shou ta yi bing",
+  description: "AWUOIVBIPOFEUVBPAIFEUVPIAEFUVAIPFV",
+  genres: [{ name: "мелодрама" }],
+  poster: {
+    url: "https://image.openmoviedb.com/kinopoisk-images/10900341/7b81ed24-447b-4177-8bc5-4ed800ec7cd3/orig",
+  },
+  rating: {
+    kp: 0,
+  },
+  year: 2024,
+};
+
 const MovieList = () => {
   const [urlObject, setUrlObject] = useState({
     year: [],
@@ -23,15 +38,15 @@ const MovieList = () => {
   });
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [MovieList, setMovieList] = useState({ docs: [{}] });
+  // { docs: [{}] }
+  const [MovieList, setMovieList] = useState({ docs: [testData] });
   const [page, setPage] = useState(1);
 
   const defaultUrl = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=50`;
 
-  useEffect(() => {
-    getData();
-    console.log(page);
-  }, [page]);
+  // useEffect(() => {
+  //   getData();
+  // }, [page]);
 
   const followPattern = (stringPattern, dataPattern) => {
     return `${stringPattern}${dataPattern[0]}-${dataPattern[1]}`;
@@ -59,7 +74,6 @@ const MovieList = () => {
     response.then((res) => {
       setIsLoading(false);
       console.log(res);
-
       setMovieList(res);
     });
   };
