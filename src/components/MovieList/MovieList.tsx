@@ -7,6 +7,7 @@ import RatingFilter from "../Filters/RatingFilter";
 import { fetcher } from "../fetcher/fetcher";
 import Pages from "../Pages/Pages";
 import { Link } from "react-router-dom";
+import { Margin } from "@mui/icons-material";
 
 const apiKey = process.env.REACT_APP_API_KEY_2;
 
@@ -89,13 +90,7 @@ const MovieList = () => {
       }
       default: {
         return MovieList.docs.map((value: any) => (
-          <Link
-            style={{ textDecoration: "none" }}
-            to="filmdetails"
-            state={{ data: value }}
-          >
-            <Card data={value} key={value.id} />
-          </Link>
+          <Card data={value} key={value.id} />
         ));
       }
     }
@@ -120,7 +115,11 @@ const MovieList = () => {
           <Grid
             container
             justifyContent="flex-start"
-            style={{ gridColumnGap: "20px" }}
+            style={{
+              gridColumnGap: "20px",
+              marginTop: "50px",
+              gridRowGap: "30px",
+            }}
           >
             {renderMovieList()}
           </Grid>
