@@ -6,13 +6,6 @@
   border-radius: 30px;
 }
 
-img {
-  border-radius: 20px;
-  width: 200px;
-  height: 300px;
-  object-fit: cover;
-}
-
 .movieInfo {
   display: flex;
   flex-direction: column;
@@ -27,4 +20,23 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+img {
+  border-radius: 20px;
+  width: 200px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  max-height: 4rem;
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
 }
