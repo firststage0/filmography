@@ -1,27 +1,42 @@
 .card {
-  margin-top: 30px;
   background-color: rgb(32, 34, 36);
   color: white;
   width: 240px;
+  height: 100%;
   border-radius: 30px;
-  padding-bottom: 10px;
 }
-.poster {
+
+.movieInfo {
   display: flex;
-  padding: 20px 0 0px 20px;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.filmContent {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+img {
+  border-radius: 20px;
   width: 200px;
+  height: 300px;
+  object-fit: cover;
 }
 
 .title {
-  padding-left: 20px;
-  font-size: 21px;
-}
-
-.rating {
-  padding: 5px 0 0 20px;
-  font-size: 13px;
-}
-.year {
-  padding-left: 20px;
-  font-size: 12px;
+  font-size: 1.5rem;
+  line-height: 2rem;
+  max-height: 4rem;
+  -webkit-box-orient: vertical;
+  display: block;
+  display: -webkit-box;
+  overflow: hidden !important;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 2;
 }
