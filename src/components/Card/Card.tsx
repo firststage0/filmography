@@ -11,6 +11,12 @@ const Card = (props: any) => {
     return "/no-poster.png";
   };
 
+  const handleClose = (e) => {
+    console.log("bookmarked");
+
+    e.preventDefault();
+  };
+
   const { poster, name, alternativeName, rating, year } = data;
   return (
     <Link
@@ -28,6 +34,13 @@ const Card = (props: any) => {
             />
             <div className={styles.title}>{name ?? alternativeName}</div>
             <div className={styles.bottomBlock}>
+              <button className={styles.bookmarkButton} onClick={handleClose}>
+                <img
+                  className={styles.bookmarkImg}
+                  src="/bookmark.png"
+                  alt=""
+                />
+              </button>
               <div className={styles.rating}>Кинопоиск: {rating?.kp}</div>
               <div className={styles.year}>Год выпуска: {year}</div>
             </div>
