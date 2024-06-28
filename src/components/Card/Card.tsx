@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
 
 const Card = (props: any) => {
   const { data } = props;
+  const { poster, name, alternativeName, rating, year } = data;
+  const [isActive, setIsActive] = useState<boolean>(false);
+
   const setActualPoster = () => {
     if (poster?.url) {
       return poster.url;
@@ -12,12 +15,10 @@ const Card = (props: any) => {
   };
 
   const handleClose = (e) => {
-    console.log("bookmarked");
-
+    setIsActive((prevState) => !prevState);
     e.preventDefault();
   };
 
-  const { poster, name, alternativeName, rating, year } = data;
   return (
     <Link
       style={{ textDecoration: "none" }}
@@ -37,7 +38,7 @@ const Card = (props: any) => {
               <button className={styles.bookmarkButton} onClick={handleClose}>
                 <img
                   className={styles.bookmarkImg}
-                  src="/bookmark.png"
+                  src={`${isActive ? "/bookmark-filled.png" : "/bookmark.png"}`}
                   alt=""
                 />
               </button>
