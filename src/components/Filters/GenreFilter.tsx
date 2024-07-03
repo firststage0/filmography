@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetcher } from "../fetcher/fetcher";
 import Autocomplete from "../Autocomplete/Autocomplete";
 
-const apiKey = process.env.REACT_APP_API_KEY_2;
+const apiKey = process.env.REACT_APP_API_KEY;
 const genresUrl =
   "https://api.kinopoisk.dev/v1/movie/possible-values-by-field?field=genres.name";
 const options = {

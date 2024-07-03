@@ -3,8 +3,8 @@ import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
 
 const Card = (props: any) => {
-  const { data } = props;
-  const { poster, name, alternativeName, rating, year } = data;
+  const { data, addToFavorites, deleteFromFavorites } = props;
+  const { id, poster, name, alternativeName, rating, year } = data;
   const [isActive, setIsActive] = useState<boolean>(false);
 
   const setActualPoster = () => {
@@ -12,11 +12,6 @@ const Card = (props: any) => {
       return poster.url;
     }
     return "/no-poster.png";
-  };
-
-  const handleClose = (e) => {
-    setIsActive((prevState) => !prevState);
-    e.preventDefault();
   };
 
   return (
@@ -35,7 +30,19 @@ const Card = (props: any) => {
             />
             <div className={styles.title}>{name ?? alternativeName}</div>
             <div className={styles.bottomBlock}>
-              <button className={styles.bookmarkButton} onClick={handleClose}>
+              <button
+                className={styles.bookmarkButton}
+                onClick={(e) => {
+                  setIsActive((prevState) => !prevState);
+                  if (!isActive) {
+                    addToFavorites(id);
+                  } else {
+                    deleteFromFavorites(id);
+                  }
+
+                  e.preventDefault();
+                }}
+              >
                 <img
                   className={styles.bookmarkImg}
                   src={`${isActive ? "/bookmark-filled.png" : "/bookmark.png"}`}

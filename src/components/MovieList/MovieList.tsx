@@ -6,10 +6,8 @@ import GenreFilter from "../Filters/GenreFilter";
 import RatingFilter from "../Filters/RatingFilter";
 import { fetcher } from "../fetcher/fetcher";
 import Pages from "../Pages/Pages";
-import { Link } from "react-router-dom";
-import { Margin } from "@mui/icons-material";
 
-const apiKey = process.env.REACT_APP_API_KEY_2;
+const apiKey = process.env.REACT_APP_API_KEY;
 
 const options = {
   method: "GET",
@@ -38,9 +36,11 @@ const MovieList = () => {
     genre: [],
   });
 
+  const [listOfFavorites, setListOfFavorites] = useState<number[]>([]);
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  // { docs: [{}] }
-  const [MovieList, setMovieList] = useState({ docs: [testData] });
+
+  const [movieList, setMovieList] = useState({ docs: [testData] });
   const [page, setPage] = useState(1);
 
   const defaultUrl = `https://api.kinopoisk.dev/v1.4/movie?page=${page}&limit=50`;
@@ -48,6 +48,22 @@ const MovieList = () => {
   // useEffect(() => {
   //   getData();
   // }, [page]);
+
+  useEffect(() => {
+    console.log(listOfFavorites);
+  }, [listOfFavorites]);
+
+  const addToFavorites = (id: number) => {
+    setListOfFavorites((prevState) => {
+      return [...prevState, id];
+    });
+  };
+
+  const deleteFromFavorites = (id: number) => {
+    setListOfFavorites((prevState) => {
+      return prevState.filter((el) => el !== id);
+    });
+  };
 
   const followPattern = (stringPattern, dataPattern) => {
     return `${stringPattern}${dataPattern[0]}-${dataPattern[1]}`;
@@ -89,8 +105,13 @@ const MovieList = () => {
         return <div>Загрузка...</div>;
       }
       default: {
-        return MovieList.docs.map((value: any) => (
-          <Card data={value} key={value.id} />
+        return movieList.docs.map((value: any) => (
+          <Card
+            data={value}
+            key={value.id}
+            addToFavorites={addToFavorites}
+            deleteFromFavorites={deleteFromFavorites}
+          />
         ));
       }
     }
