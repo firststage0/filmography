@@ -50,7 +50,7 @@ const MovieList = () => {
   // }, [page]);
 
   useEffect(() => {
-    console.log(listOfFavorites);
+    localStorage.setItem("favoriteFilms", JSON.stringify(listOfFavorites));
   }, [listOfFavorites]);
 
   const addToFavorites = (id: number) => {
