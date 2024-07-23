@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { fetcher } from "../fetcher/fetcher";
 import Card from "../Card/Card";
+import { Grid } from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -12,11 +14,18 @@ const options = {
   headers: { accept: "application/json", "X-API-KEY": apiKey },
 };
 
+/*TODO:   
+
+      
+        Добавить проверку на наличие элементов в localStorage, и, если он пустой, то показывать 
+        надпись "Тут пусто";
+
+*/
 const FavoriteFilms = () => {
-  const favoriteFilms = JSON.parse(localStorage.getItem("favoriteFilms"));
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [movieList, setMovieList] = useState({ docs: [] });
-  const buildUrl = () => {
+
+  const buildUrl = (favoriteFilms) => {
     const idString = favoriteFilms.reduce((urlId: string, id: number) => {
       return urlId.concat(`&id=${id}`);
     }, "");
@@ -24,7 +33,16 @@ const FavoriteFilms = () => {
   };
 
   const getFilms = () => {
-    const url = buildUrl();
+    const favoriteFilms = JSON.parse(localStorage.getItem("favoriteFilms"));
+    if (!favoriteFilms.length) {
+      console.log("Empty storage");
+
+      return;
+    }
+
+    const url = buildUrl(favoriteFilms);
+    // console.log("url:", url);
+
     const response = fetcher(url, options);
     setIsLoading(true);
     response.then((res) => {
@@ -51,8 +69,30 @@ const FavoriteFilms = () => {
 
   return (
     <div>
+      <Link to={"/"}>
+        <button>Home</button>
+      </Link>
+      <br />
       <button onClick={getFilms}>Get films</button>
-      {renderMovieList()}
+      <div
+        style={{
+          width: "1280px",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      >
+        <Grid
+          container
+          justifyContent="flex-start"
+          style={{
+            gridColumnGap: "20px",
+            marginTop: "50px",
+            gridRowGap: "30px",
+          }}
+        >
+          {renderMovieList()}
+        </Grid>
+      </div>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import GenreFilter from "../Filters/GenreFilter";
 import RatingFilter from "../Filters/RatingFilter";
 import { fetcher } from "../fetcher/fetcher";
 import Pages from "../Pages/Pages";
+import { Link } from "react-router-dom";
 
 const apiKey = process.env.REACT_APP_API_KEY;
 
@@ -53,18 +54,6 @@ const MovieList = () => {
     localStorage.setItem("favoriteFilms", JSON.stringify(listOfFavorites));
   }, [listOfFavorites]);
 
-  const addToFavorites = (id: number) => {
-    setListOfFavorites((prevState) => {
-      return [...prevState, id];
-    });
-  };
-
-  const deleteFromFavorites = (id: number) => {
-    setListOfFavorites((prevState) => {
-      return prevState.filter((el) => el !== id);
-    });
-  };
-
   const followPattern = (stringPattern, dataPattern) => {
     return `${stringPattern}${dataPattern[0]}-${dataPattern[1]}`;
   };
@@ -106,12 +95,7 @@ const MovieList = () => {
       }
       default: {
         return movieList.docs.map((value: any) => (
-          <Card
-            data={value}
-            key={value.id}
-            addToFavorites={addToFavorites}
-            deleteFromFavorites={deleteFromFavorites}
-          />
+          <Card data={value} key={value.id} />
         ));
       }
     }
@@ -119,7 +103,11 @@ const MovieList = () => {
 
   return (
     <>
-      <div style={{ display: "inline" }}>
+      <div>
+        <Link to={"favorites"}>
+          <button>Favorite films</button>
+        </Link>
+
         <div style={{ display: "block", paddingTop: "100px" }}>
           <YearFilter setUrlObject={setUrlObject} />
           <RatingFilter setUrlObject={setUrlObject} />

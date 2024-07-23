@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Card.module.css";
 import { Link } from "react-router-dom";
+import { markFavorite } from "../../functions/markFavorite";
 
 const Card = (props: any) => {
-  const { data, addToFavorites, deleteFromFavorites } = props;
+  const { data } = props;
   const { id, poster, name, alternativeName, rating, year } = data;
   const [isActive, setIsActive] = useState<boolean>(false);
 
@@ -13,6 +14,13 @@ const Card = (props: any) => {
     }
     return "/no-poster.png";
   };
+
+  useEffect(() => {
+    const listOfFavorites = JSON.parse(localStorage.getItem("favoriteFilms"));
+    if (listOfFavorites.includes(id)) {
+      setIsActive(true);
+    }
+  }, []);
 
   return (
     <Link
@@ -33,13 +41,8 @@ const Card = (props: any) => {
               <button
                 className={styles.bookmarkButton}
                 onClick={(e) => {
+                  markFavorite(id);
                   setIsActive((prevState) => !prevState);
-                  if (!isActive) {
-                    addToFavorites(id);
-                  } else {
-                    deleteFromFavorites(id);
-                  }
-
                   e.preventDefault();
                 }}
               >
