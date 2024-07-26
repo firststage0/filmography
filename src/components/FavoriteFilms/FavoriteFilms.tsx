@@ -14,13 +14,6 @@ const options = {
   headers: { accept: "application/json", "X-API-KEY": apiKey },
 };
 
-/*TODO:   
-
-      
-        Добавить проверку на наличие элементов в localStorage, и, если он пустой, то показывать 
-        надпись "Тут пусто";
-
-*/
 const FavoriteFilms = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [movieList, setMovieList] = useState({ docs: [] });
@@ -35,8 +28,9 @@ const FavoriteFilms = () => {
   const getFilms = () => {
     const favoriteFilms = JSON.parse(localStorage.getItem("favoriteFilms"));
     if (!favoriteFilms.length) {
-      console.log("Empty storage");
-
+      setMovieList(() => {
+        return { docs: [] };
+      });
       return;
     }
 
